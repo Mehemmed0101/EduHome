@@ -1,0 +1,63 @@
+﻿@using EduHome.ViewModels;
+@{
+    EventViewModel eventViewModel = Model;
+    var events = eventViewModel.Events;
+}
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>event</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Event Start -->
+<div class="event-area three text-center pt-150 pb-150">
+    <div class="container">
+        <div class="row" id="eventRow">
+            @foreach (var item in events)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-event mb-60">
+                        <div class="event-img">
+                            <a href="@item.Link">
+                                <img src="~/@item.ImageUrl" alt="event">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                            <div class="event-date">
+                                <h3>@Html.Raw(item.Date)</h3>
+                            </div>
+                        </div>
+                        <div class="event-content text-left">
+                            <h4><a href="@item.Link">@item.Title</a></h4>
+                            <ul>
+                                <li><span>time:</span> @item.Time</li>
+                                <li><span>venue</span> @item.Address</li>
+                            </ul>
+                            <div class="event-content-right">
+                                <a class="default-btn" href="@item.Link">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row justify-content-center">
+            <input value="@ViewBag.EventCount" type="hidden" id="eventCount" />
+            <button class="btn btn-primary" id="loadEvent">Load more</button>
+        </div>
+    </div>
+</div>
+<!-- Event End -->

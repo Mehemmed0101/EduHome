@@ -1,0 +1,61 @@
+﻿@using EduHome.DataAccessLayer.Entity;
+@model Header
+
+<header class="top">
+    <div class="header-area header-sticky fixed">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="logo">
+                        <a href="/home/index"><img src="~/@Model.LogoUrl" alt="eduhome" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="content-wrapper one">
+                        <!-- Main Menu Start -->
+                        <div class="main-menu one text-right">
+                            <nav>
+                                <ul>
+                                    @foreach (var item in Model.Navigation.Where(x => x.isMain))
+                                    {
+                                        <li>
+                                            <a href="@item.Link">@item.Title</a>
+
+                                            <ul>
+                                                @foreach (var item2 in Model.Navigation.Where(x => x.ParentId == item.Id))
+                                                {
+                                                    <li><a href="@item2.Link">@item2.Title</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                        <!--Search Form Start-->
+                        <div class="search-btn">
+                            <ul data-toggle="dropdown" class="header-search search-toggle">
+                                <li class="search-menu">
+                                    <i class="fa fa-search"></i>
+                                </li>
+                            </ul>
+                            <div class="search">
+                                <div class="search-form">
+                                    <form id="search-form" action="#">
+                                        <input type="search" placeholder="Search here..." name="search" />
+                                        <button type="submit">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Search Form-->
+                        <div class="mobile-menu hidden-lg hidden-md one"></div>
+                        <!-- Main Menu End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

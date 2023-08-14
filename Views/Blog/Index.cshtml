@@ -1,0 +1,71 @@
+﻿@using EduHome.ViewModels;
+@{
+    BlogViewModel blogViewModel = Model;
+    var blogs = blogViewModel.Blogs;
+    var pageCounts = blogViewModel.PageCounts;
+}
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>blog</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Blog Start -->
+<div class="blog-area pt-150 pb-150">
+    <div class="container">
+        <div class="row" id="blogRow">
+            @foreach (var blog in blogs)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-blog mb-60">
+                        <div class="blog-img">
+                            <a href="#"><img src="~/@blog.ImageUrl" alt="blog"></a>
+                            <div class="blog-hover">
+                                <i class="fa fa-link"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-top">
+                                <p>By @blog.CreatedBy  /  @blog.Date  /  <i class="fa fa-comments-o"></i>@blog.CommentCount</p>
+                            </div>
+                            <div class="blog-bottom">
+                                <h2><a href="@blog.Link">@blog.Title </a></h2>
+                                <a href="@blog.Link">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="row justify-content-center">
+            <input value="@ViewBag.BlogCount" type="hidden" id="blogCount" />
+            <button class="btn btn-primary" id="loadBlog">Load more</button>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pagination">
+                    <ul>
+                        @foreach (var pc in pageCounts)
+                        {
+                            <li><a href="#">@pc.Row</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->

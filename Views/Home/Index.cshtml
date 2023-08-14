@@ -1,0 +1,232 @@
+﻿@using EduHome.ViewModels;
+@{
+    HomeViewModel homeViewModel = Model;
+    var sliders = homeViewModel.Slider;
+    var noticeLefts = homeViewModel.NoticeLeft;
+    var noticeRights = homeViewModel.NoticeRight;
+    var banners = homeViewModel.Banner;
+    var courses = homeViewModel.Courses;
+    var events = homeViewModel.Events;
+    var carusels = homeViewModel.Carusels;
+    var blogs = homeViewModel.Blogs;
+}
+<!-- Background Area Start -->
+<section id="slider-container" class="slider-area">
+    <div class="slider-owl owl-theme owl-carousel">
+        <!-- Start Slingle Slide -->
+        @foreach (var slider in sliders)
+        {
+            <div class="single-slide item" style="background-image: url(/@slider.BackgroundUrl)">
+                <!-- Start Slider Content -->
+                <div class="slider-content-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-left-5">
+                                <div class="slide-content-wrapper">
+                                    <div class="slide-content">
+                                        @Html.Raw(slider.Title)
+                                        <p>@slider.Description</p>
+                                        <a class="default-btn" href="@slider.Link">Learn more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Slider Content -->
+            </div>
+        }
+        <!-- End Slingle Slide -->
+    </div>
+</section>
+<!-- Background Area End -->
+<!-- Notice Start -->
+<section class="notice-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-left">
+                    <h3>notice board</h3>
+                    @foreach (var noticeLeft in noticeLefts)
+                    {
+                        <div class="single-notice-left mb-25 pb-25">
+                            <h4>@noticeLeft.Date</h4>
+                            <p>@noticeLeft.Info</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-right">
+                    @foreach (var noticeRight in noticeRights)
+                    {
+                        <div class="single-notice-right mb-25 pb-25">
+                            <h3>@noticeRight.Title</h3>
+                            <p>@noticeRight.Description</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Notice End -->
+<!-- Choose Start -->
+<section class="choose-area pb-85 pt-77">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-left-4 col-sm-8 col-md-offset-left-4">
+                @foreach (var banner in banners)
+                {
+                    <div class="choose-content text-left">
+                        <h2>@banner.Title</h2>
+                        @Html.Raw(banner.Description)
+                        <a class="default-btn" href="@banner.Link">view courses</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Choose Area End -->
+<!-- Courses Area Start -->
+<div class="courses-area pt-150 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <img src="~/img/icon/section.png" alt="section-title">
+                    <h2>COURSES WE OFFER</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            @foreach (var course in courses)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-course">
+                        <div class="course-img">
+                            <a href="@course.Link">
+                                <img src="~/@course.ImageUrl" alt="course">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="course-content">
+                            <h3><a href="@course.Link">@course.Title</a></h3>
+                            <p>@course.Description</p>
+                            <a class="default-btn" href="@course.Link">read more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Courses Area End -->
+<!-- Event Area Start -->
+<div class="event-area one text-center pt-140 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <img src="~/img/icon/section.png" alt="section-title">
+                    <h2>UPCOMMING EVENTS</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in events)
+            {
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-event mb-35">
+                        <div class="event-date">
+                            <h3><a href="@item.Link">@Html.Raw(item.Date)</a></h3>
+                        </div>
+                        <div class="event-content text-left">
+                            <div class="event-content-left">
+                                <h4><a href="@item.Link">@item.Title</a></h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i>@item.Time</li>
+                                    <li><i class="fa fa-map-marker"></i>@item.Address</li>
+                                </ul>
+                            </div>
+                            <div class="event-content-right">
+                                <a class="default-btn" href="@item.Link">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- Event Area End -->
+    <!-- Testimonial Area Start -->
+    <div class="testimonial-area pt-110 pb-105 text-center">
+        <div class="container">
+            <div class="row">
+                @foreach (var carusel in carusels)
+                {
+                    <div class="testimonial-owl owl-theme owl-carousel">
+                        <div class="col-md-8 col-md-offset-2 col-sm-12">
+                            <div class="single-testimonial">
+                                <div class="testimonial-info">
+                                    <div class="testimonial-img">
+                                        <img src="~/@carusel.ImageUrl" alt="testimonial">
+                                    </div>
+                                    <div class="testimonial-content">
+                                        <p>@carusel.Info</p>
+                                        <h4>@carusel.FullName</h4>
+                                        <h5>@carusel.Position</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial Area End -->
+    <!-- Blog Area Start -->
+    <div class="blog-area pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="section-title text-center">
+                        <img src="~/img/icon/section.png" alt="section-title">
+                        <h2>LATEST FROM BLOG</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var blog in blogs)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-blog">
+                            <div class="blog-img">
+                                <a href="@blog.Link"><img src="~/@blog.ImageUrl" alt="blog"></a>
+                                <div class="blog-hover">
+                                    <a href="@blog.Link"><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-top">
+                                    <p>By @blog.CreatedBy  /  @blog.Date  /  <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
+                                </div>
+                                <div class="blog-bottom">
+                                    <h2><a href="@blog.Link">@blog.Title </a></h2>
+                                    <a href="@blog.Link">read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Area End -->
+
